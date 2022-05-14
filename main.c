@@ -1,7 +1,16 @@
-#include <stdio.h>
+#include "philo.h"
 
-int main()
+int main(int argc, char **argv)
 {
-	printf("Hello, World!\n");
+	pthread_t	*thread;
+	t_args		*args;
+
+	if (ft_check(argc, argv) == 1)
+	{
+		write(2, "Wrong arguments\n", 16);
+		return (0);
+	}
+	ft_read_args(argv, args);
+
 	return 0;
 }
