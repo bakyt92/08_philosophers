@@ -15,7 +15,9 @@ typedef struct s_args
 	int number_each_eat;
 } t_args;
 
-int ft_check(int argc, char **argv);
+int		ft_check(int argc, char **argv);
+void	ft_read_args(char **argv, t_args *args);
+int		ft_atoi(const char *str);
 
 
 #endif

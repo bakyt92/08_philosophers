@@ -12,5 +12,6 @@ int main(int argc, char **argv)
 	}
 	ft_read_args(argv, args);
 
+
 	return 0;
 }

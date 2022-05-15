@@ -72,8 +72,8 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 
 build cmake_object_order_depends_target_08_philosophers: phony || CMakeFiles/08_philosophers.dir
 
-build CMakeFiles/08_philosophers.dir/main.c.o: C_COMPILER__08_philosophers_Debug /Users/ufitzhug/Desktop/08_philosophers/main.c || cmake_object_order_depends_target_08_philosophers
-  DEP_FILE = CMakeFiles/08_philosophers.dir/main.c.o.d
+build CMakeFiles/08_philosophers.dir/philo.c.o: C_COMPILER__08_philosophers_Debug /Users/ufitzhug/Desktop/08_philosophers/philo.c || cmake_object_order_depends_target_08_philosophers
+  DEP_FILE = CMakeFiles/08_philosophers.dir/philo.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
   OBJECT_DIR = CMakeFiles/08_philosophers.dir
   OBJECT_FILE_DIR = CMakeFiles/08_philosophers.dir
@@ -84,8 +84,14 @@ build CMakeFiles/08_philosophers.dir/src_philo/ft_check.c.o: C_COMPILER__08_phil
   OBJECT_DIR = CMakeFiles/08_philosophers.dir
   OBJECT_FILE_DIR = CMakeFiles/08_philosophers.dir/src_philo
 
-build CMakeFiles/08_philosophers.dir/src_philo/ft_read_argc.c.o: C_COMPILER__08_philosophers_Debug /Users/ufitzhug/Desktop/08_philosophers/src_philo/ft_read_argc.c || cmake_object_order_depends_target_08_philosophers
-  DEP_FILE = CMakeFiles/08_philosophers.dir/src_philo/ft_read_argc.c.o.d
+build CMakeFiles/08_philosophers.dir/src_philo/ft_read_args.c.o: C_COMPILER__08_philosophers_Debug /Users/ufitzhug/Desktop/08_philosophers/src_philo/ft_read_args.c || cmake_object_order_depends_target_08_philosophers
+  DEP_FILE = CMakeFiles/08_philosophers.dir/src_philo/ft_read_args.c.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
+  OBJECT_DIR = CMakeFiles/08_philosophers.dir
+  OBJECT_FILE_DIR = CMakeFiles/08_philosophers.dir/src_philo
+
+build CMakeFiles/08_philosophers.dir/src_philo/ft_atoi.c.o: C_COMPILER__08_philosophers_Debug /Users/ufitzhug/Desktop/08_philosophers/src_philo/ft_atoi.c || cmake_object_order_depends_target_08_philosophers
+  DEP_FILE = CMakeFiles/08_philosophers.dir/src_philo/ft_atoi.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
   OBJECT_DIR = CMakeFiles/08_philosophers.dir
   OBJECT_FILE_DIR = CMakeFiles/08_philosophers.dir/src_philo
@@ -98,7 +104,7 @@ build CMakeFiles/08_philosophers.dir/src_philo/ft_read_argc.c.o: C_COMPILER__08_
 #############################################
 # Link the executable 08_philosophers
 
-build 08_philosophers: C_EXECUTABLE_LINKER__08_philosophers_Debug CMakeFiles/08_philosophers.dir/main.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_check.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_read_argc.c.o
+build 08_philosophers: C_EXECUTABLE_LINKER__08_philosophers_Debug CMakeFiles/08_philosophers.dir/philo.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_check.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_read_args.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_atoi.c.o
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14
   OBJECT_DIR = CMakeFiles/08_philosophers.dir
   POST_BUILD = :
