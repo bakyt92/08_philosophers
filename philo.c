@@ -12,12 +12,13 @@ int main(int argc, char **argv)
 	t_args		*args;
 	t_Data		*Data;
 
-	if (ft_check(argc, argv) == 1)
+	if (ft_check(argc, argv))
 	{
 		write(2, "Wrong arguments\n", 16);
 		return (0);
 	}
 	ft_read_args(argv, args);
-	pthread_create(thread, NULL, &ft_philo_eat, (void *) Data);
+	
+	ft_create_thread(args, Data);
 	return 0;
 }

@@ -25,6 +25,6 @@ typedef struct s_Data
 int		ft_check(int argc, char **argv);
 void	ft_read_args(char **argv, t_args *args);
 int		ft_atoi(const char *str);
-
+void	ft_create_thread(t_args *args);
 
 #endif
