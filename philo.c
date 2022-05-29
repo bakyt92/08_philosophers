@@ -8,7 +8,7 @@ void	*ft_philo_eat(void *Data)
 
 int main(int argc, char **argv)
 {
-	pthread_t	*thread;
+	pthread_t	*threads;
 	t_args		*args;
 	t_Data		*Data;
 
@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	ft_read_args(argv, args);
-	
-	ft_create_thread(args, Data);
+	if (ft_init_data(args))
+		return (1);
 	return 0;
 }
