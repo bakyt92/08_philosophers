@@ -58,6 +58,8 @@ for the thread thread can be reclaimed when the thread terminates.  If thread ha
 terminated, pthread_detach() will not cause it to terminate.  The effect of multiple
 pthread_detach() calls on the same target thread is unspecified.
 
+Прим. Как правило, вызывается внутри функции.
+
 RETURN VALUES
 If successful, the pthread_detach() function will return zero.  Otherwise an error
 number will be returned to indicate the error.  Note that the function does not
@@ -95,4 +97,9 @@ RETURN VALUES
 The usleep() function returns the value 0 if successful; otherwise the value -1 is
 returned and the global variable errno is set to indicate the error.
 
-##### Разбираемся с кодом
+##### Видео Moscow EDU
+https://www.youtube.com/watch?v=Bhv2ChKDeio&t=362s
+Через pthread_join можно дождаться других потоков, что они выдадут. 
+Они равноправные, без подчиненности. 
+Проект philosophers - направлен на то, как пользоваться потоками.
+ 
