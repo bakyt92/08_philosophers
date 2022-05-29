@@ -50,8 +50,7 @@ an error number will be returned to indicate the error.
 SYNOPSIS
 \#include <pthread.h>
 
-     int
-     pthread_detach(pthread_t thread);
+     int pthread_detach(pthread_t thread);
 
 DESCRIPTION
 The pthread_detach() function is used to indicate to the implementation that storage
@@ -74,8 +73,7 @@ Standard C Library (libc, -lc)
 SYNOPSIS
 \#include <unistd.h>
 
-     int
-     usleep(useconds_t microseconds);
+     int usleep(useconds_t microseconds);
 
 DESCRIPTION
 The usleep() function suspends execution of the calling thread until either
