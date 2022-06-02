@@ -1,0 +1,17 @@
+#include "../philo.h"
+
+int	ft_dinner(t_args *args)
+{
+	size_t	i;
+
+	i = 0;
+	if (args->number_philo == 1)
+		return (1);
+	while (i < args->number_philo)
+	{
+		pthread_create(args->philosophers[i].philos, NULL, ft_simulation, args);
+		i++;
+	}
+	return (0);
+}
+
