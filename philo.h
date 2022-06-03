@@ -6,6 +6,7 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <stdlib.h>
+# include <sys/time.h>
 
 typedef struct s_Data
 {
@@ -13,6 +14,8 @@ typedef struct s_Data
 	int id_philosopher;
 	pthread_mutex_t *left_fork;
 	pthread_mutex_t *right_fork;
+	size_t	number_dining; // проверка на количество приемов пищи
+	long	time_last_diner; //
 
 } t_Data;
 
@@ -25,7 +28,8 @@ typedef struct s_args
 	size_t 			number_each_eat;
 	pthread_mutex_t	*all_forks;
 	pthread_mutex_t printing;
-	t_Data	*philosophers;
+	size_t			start_time;
+	t_Data			*philosophers;
 } t_args;
 
 int		ft_check(int argc, char **argv);
@@ -38,7 +42,11 @@ int	ft_dinner(t_args *args);
 
 /* simulation */
 void	*ft_simulation(void *args);
-void	ft_sleep(t_args *Data);
+//void	ft_sleep(t_args *Data);
 void	ft_thinking(t_args *Data);
+void	ft_sleeping(t_args *Data);
+void	ft_print_data(char *Text, t_args *Data);
 
+/* time functions */
+void	ft_current_time(size_t *current);
 #endif
