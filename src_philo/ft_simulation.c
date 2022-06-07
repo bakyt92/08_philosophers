@@ -9,14 +9,6 @@ void	ft_print_data(char *Text, t_args *Data)
 	printf(Text, timestamp_current, Data->philosophers->id_philosopher);
 }
 
-void	ft_eating(t_args *Data)
-{
-	pthread_mutex_lock(&(Data->printing));
-	ft_print_data("%zu %zu is sleeping\n", Data);
-	usleep(Data->time_sleep * 1000);
-	pthread_mutex_unlock(&(Data->printing));
-}
-
 void	ft_sleeping(t_args *Data)
 {
 	pthread_mutex_lock(&(Data->printing));
@@ -32,6 +24,14 @@ void	ft_thinking(t_args *Data)
 	pthread_mutex_unlock(&(Data->printing));
 }
 
+void	ft_eating(t_args *Data)
+{
+	pthread_mutex_lock(&(Data->printing));
+	ft_print_data("%zu %zu is sleeping\n", Data);
+	usleep(Data->time_sleep * 1000);
+	pthread_mutex_unlock(&(Data->printing));
+}
+
 void	*ft_simulation(void *args)
 {
 	t_args *Data;
@@ -44,7 +44,11 @@ void	*ft_simulation(void *args)
 		ft_thinking(Data);
 		usleep(Data->time_eat * 1000);
 	}
+	if (ft_cycle(Data))
+		return ;
+/*
 	ft_eating(Data);
 	ft_sleeping(Data);
+*/
 }
 

@@ -42,10 +42,14 @@ int	ft_dinner(t_args *args);
 
 /* simulation */
 void	*ft_simulation(void *args);
+
 //void	ft_sleep(t_args *Data);
 void	ft_thinking(t_args *Data);
 void	ft_sleeping(t_args *Data);
 void	ft_print_data(char *Text, t_args *Data);
+void	ft_eating(t_args *Data);
+void	ft_eating(t_args *Data);
+int 	ft_cycle(t_args *Data)
 
 /* time functions */
 void	ft_current_time(size_t *current);
