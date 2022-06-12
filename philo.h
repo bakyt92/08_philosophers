@@ -1,4 +1,3 @@
-
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -54,5 +53,8 @@ int 	ft_cycle(t_args *Data);
 void	ft_current_time(size_t *current);
 
 /*  */
-int ft_if_alive(t_args *Data)
+int ft_if_alive(t_args *Data);
+
+/*ft_error */
+int	ft_print_error(char *str);
 #endif

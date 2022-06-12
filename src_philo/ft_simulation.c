@@ -44,8 +44,12 @@ void	*ft_simulation(void *args)
 		ft_thinking(Data);
 		usleep(Data->time_eat * 1000);
 	}
-	if (ft_cycle(Data))
-		return ;
+	while (1)
+	{
+		if (!ft_cycle(Data))
+			return ;
+	}
+
 /*
 	ft_eating(Data);
 	ft_sleeping(Data);
