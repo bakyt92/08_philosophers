@@ -28,7 +28,7 @@ int	ft_create_mutex(t_args *args)
 
 int	ft_create_forks(t_args *args)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	args->all_forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)

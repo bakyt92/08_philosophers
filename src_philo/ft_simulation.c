@@ -15,6 +15,7 @@ int	ft_sleeping(t_args *Data)
 	ft_print_data("%zu %zu is sleeping\n", Data);
 	pthread_mutex_unlock(&(Data->printing));
 	usleep(Data->time_sleep * 1000);
+	return (0);
 }
 
 int	ft_thinking(t_args *Data)
@@ -39,6 +40,7 @@ int	ft_eating(t_args *Data)
 	pthread_mutex_unlock(&(Data->number_of_meals));
 	pthread_mutex_unlock(&(Data->printing));
 	usleep(Data->time_eat * 1000);
+	return (0);
 }
 
 void	*ft_simulation(void *args)
