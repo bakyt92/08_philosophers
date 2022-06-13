@@ -138,6 +138,12 @@ build CMakeFiles/08_philosophers.dir/src_philo/ft_print_error.c.o: C_COMPILER__0
   OBJECT_DIR = CMakeFiles/08_philosophers.dir
   OBJECT_FILE_DIR = CMakeFiles/08_philosophers.dir/src_philo
 
+build CMakeFiles/08_philosophers.dir/src_philo/ft_check_living.c.o: C_COMPILER__08_philosophers_Debug /Users/ufitzhug/Desktop/08_philosophers/src_philo/ft_check_living.c || cmake_object_order_depends_target_08_philosophers
+  DEP_FILE = CMakeFiles/08_philosophers.dir/src_philo/ft_check_living.c.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
+  OBJECT_DIR = CMakeFiles/08_philosophers.dir
+  OBJECT_FILE_DIR = CMakeFiles/08_philosophers.dir/src_philo
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target 08_philosophers
@@ -146,7 +152,7 @@ build CMakeFiles/08_philosophers.dir/src_philo/ft_print_error.c.o: C_COMPILER__0
 #############################################
 # Link the executable 08_philosophers
 
-build 08_philosophers: C_EXECUTABLE_LINKER__08_philosophers_Debug CMakeFiles/08_philosophers.dir/philo.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_check.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_read_args.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_atoi.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_process_threads.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_dinner.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_simulation.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_time.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_cycle.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_if_alive.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_print_error.c.o
+build 08_philosophers: C_EXECUTABLE_LINKER__08_philosophers_Debug CMakeFiles/08_philosophers.dir/philo.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_check.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_read_args.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_atoi.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_process_threads.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_dinner.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_simulation.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_time.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_cycle.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_if_alive.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_print_error.c.o CMakeFiles/08_philosophers.dir/src_philo/ft_check_living.c.o
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14
   OBJECT_DIR = CMakeFiles/08_philosophers.dir
   POST_BUILD = :

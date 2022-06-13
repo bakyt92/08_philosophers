@@ -13,8 +13,8 @@ int	ft_sleeping(t_args *Data)
 {
 	pthread_mutex_lock(&(Data->printing));
 	ft_print_data("%zu %zu is sleeping\n", Data);
-	usleep(Data->time_sleep * 1000);
 	pthread_mutex_unlock(&(Data->printing));
+	usleep(Data->time_sleep * 1000);
 }
 
 int	ft_thinking(t_args *Data)
@@ -29,13 +29,16 @@ int	ft_eating(t_args *Data)
 {
 	size_t	timestamp_current;
 
-	ft_current_time(&timestamp_current);
 	pthread_mutex_lock(&(Data->printing));
+	pthread_mutex_lock(&(Data->number_of_meals));
 	ft_print_data("%zu %zu is eating\n", Data);
-	usleep(Data->time_sleep * 1000);
-	Data->philosophers[Data->number_philo].time_last_diner =
-			timestamp_current - Data->start_time;
+	ft_current_time(&timestamp_current);
+	Data->philosophers[Data->philosophers->id_philosopher].time_last_diner =
+			timestamp_current;
+	Data->philosophers[Data->philosophers->id_philosopher].number_dining++;
+	pthread_mutex_unlock(&(Data->number_of_meals));
 	pthread_mutex_unlock(&(Data->printing));
+	usleep(Data->time_eat * 1000);
 }
 
 void	*ft_simulation(void *args)

@@ -6,6 +6,23 @@ int	ft_init_data(t_args *args)
 		return (1);
 	if (ft_create_philosophers(args))
 		return (1);
+	if (ft_create_mutex(args))
+		return (1);
+	args->status_live = 1;
+	return (0);
+}
+
+int	ft_create_mutex(t_args *args)
+{
+	if (pthread_mutex_init(&(args->alive), NULL))
+		return (1);
+//	if (pthread_mutex_init(&(args->lt_eating), NULL))
+//		return (1);
+	if (args->number_each_eat > 0)
+	{
+		if (pthread_mutex_init(&(args->number_of_meals), NULL))
+			return (1);
+	}
 	return (0);
 }
 
@@ -29,6 +46,7 @@ int	ft_create_forks(t_args *args)
 int ft_create_philosophers(t_args *args)
 {
 	size_t i;
+	size_t timestamp_start;
 
 	args->philosophers = malloc(sizeof(t_Data) * args->number_philo);
 	if (!args->philosophers)
@@ -39,6 +57,9 @@ int ft_create_philosophers(t_args *args)
 		args->philosophers[i].id_philosopher = i;
 		args->philosophers[i].right_fork = &(args->all_forks[i]);
 		args->philosophers[i].left_fork = &(args->all_forks[(i + 1) % args->number_philo]);
+		ft_current_time(&timestamp_start);
+		args->philosophers[i].time_last_diner = timestamp_start;
+		args->philosophers[i].number_dining = 0;
 		i++;
 	}
 	return (0);
