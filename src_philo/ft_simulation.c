@@ -55,8 +55,10 @@ void	*ft_simulation(void *args)
 		ft_thinking(Data);
 		usleep(Data->time_eat * 1000);
 	}
+	printf("check_0\n");
 	while (1)
 	{
+		printf("check_1\nID PHILO %d");
 		if (!ft_cycle(Data))
 			break ;
 	}
