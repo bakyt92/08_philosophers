@@ -26,10 +26,30 @@ int	ft_living_script(t_args *args)
 		ft_print_data("%zu %zu died\n", args);
 		pthread_mutex_unlock(&(args->printing));
 		pthread_mutex_unlock(&(args->alive));
+		return (1);
 	}
+	return (0);
 }
 
 int ft_check_nbr_eating(t_args *args)
 {
-	
+	size_t	i;
+	size_t	counter;
+
+	i = 0;
+	counter = 0;
+	while (i < args->number_philo)
+	{
+		if (args->philosophers[i].number_dining >= args->number_each_eat)
+			counter++;
+		i++;
+	}
+	if (counter == args->number_philo)
+	{
+		pthread_mutex_lock(&(args->alive));
+		args->status_live = 0;
+		pthread_mutex_unlock(&(args->alive));
+		return (1);
+	}
+	return (0);
 }
