@@ -21,20 +21,20 @@ int	ft_living_script(t_args *args)
 	ft_current_time(&timestamp_current);
 	while (i < args->number_philo)
 	{
-
+		pthread_mutex_lock(&(args->lt_eating));
 		if (timestamp_current - args->philosophers[i].time_last_diner >
 			args->time_die)
 		{
-			printf("TIME: %zu\n", timestamp_current - args->philosophers[i]
-			.time_last_diner);
+			pthread_mutex_unlock(&(args->lt_eating));
 			pthread_mutex_lock(&(args->alive));
 			pthread_mutex_lock(&(args->printing));
 			ft_print_data("%zu %zu died\n", args, &(args->philosophers[i]));
 			args->status_live = 0;
-			pthread_mutex_unlock(&(args->printing));
+//			pthread_mutex_unlock(&(args->printing));
 			pthread_mutex_unlock(&(args->alive));
 			return (1);
 		}
+		pthread_mutex_unlock(&(args->lt_eating));
 		i++;
 	}
 	return (0);

@@ -16,9 +16,9 @@ int	ft_create_mutex(t_args *args)
 {
 	if (pthread_mutex_init(&(args->alive), NULL))
 		return (1);
-//	if (pthread_mutex_init(&(args->lt_eating), NULL))
-//		return (1);
 	if (pthread_mutex_init(&(args->printing), NULL))
+		return (1);
+	if (pthread_mutex_init(&(args->lt_eating), NULL))
 		return (1);
 	if (args->number_each_eat > 0)
 	{

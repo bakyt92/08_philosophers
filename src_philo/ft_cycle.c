@@ -5,7 +5,6 @@ static int ft_take_left_fork(t_args *Data, t_Data *ph)
 	if (pthread_mutex_lock(ph->left_fork))
 		return (ft_print_error("mutex lock error\n"));
 	ft_print_data("%zu %zu has taken a fork\n", Data, ph);
-//	printf("DEATH STATUS %zu (1 is alive, 0 is dead\n", Data->status_live);
 	return (ft_if_alive(Data));
 }
 
@@ -14,7 +13,6 @@ static int ft_take_right_fork(t_args *Data, t_Data *ph)
 	if (pthread_mutex_lock(ph->right_fork))
 		return (ft_print_error("mutex lock error\n"));
 	ft_print_data("%zu %zu has taken a fork\n", Data, ph);
-//	printf("DEATH STATUS %zu (1 is alive, 0 is dead\n", Data->status_live);
 	return (ft_if_alive(Data));
 }
 

@@ -30,13 +30,14 @@ int	ft_eating(t_args *Data, t_Data *ph)
 {
 	size_t	timestamp_current;
 
-//	printf("EDA #1\n");
 	pthread_mutex_lock(&(Data->printing));
 	pthread_mutex_lock(&(Data->number_of_meals));
+	pthread_mutex_lock(&(Data->lt_eating));
 	ft_print_data("%zu %zu is eating\n", Data, ph);
 	ft_current_time(&timestamp_current);
 	ph->time_last_diner = timestamp_current;
 	ph->number_dining++;
+	pthread_mutex_unlock(&(Data->lt_eating));
 	pthread_mutex_unlock(&(Data->number_of_meals));
 	pthread_mutex_unlock(&(Data->printing));
 	ft_smart_sleep(Data->time_eat);

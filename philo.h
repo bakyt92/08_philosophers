@@ -14,7 +14,6 @@ typedef struct s_Data
 	size_t			id_philosopher;
 	pthread_mutex_t *left_fork;
 	pthread_mutex_t *right_fork;
-//	pthread_mutex_t lt_diner;
 	size_t			number_dining; // проверка на количество приемов пищи
 	size_t			time_last_diner; //запись последнего приема пищи
 	struct s_args	*args1;
@@ -33,7 +32,7 @@ typedef struct s_args
 	pthread_mutex_t printing;
 	pthread_mutex_t number_of_meals;
 	pthread_mutex_t alive;
-//	pthread_mutex_t lt_eating;
+	pthread_mutex_t lt_eating;
 	t_Data			*philosophers;
 } t_args;
 
