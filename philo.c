@@ -13,7 +13,7 @@ int ft_end_dinner(t_args *args)
 	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 //	pthread_t	*threads;
 	t_args		*args;
@@ -25,9 +25,11 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	args = malloc(sizeof(t_args));
+	ft_read_args(argv, args);
 	if (ft_init_data(args))
 		return (1);
-	ft_read_args(argv, args);
+//	printf("checkpoint 1 %zu\n", args->philosophers[1].id_philosopher);
+//	printf("checkpoint 2 %zu\n", args->number_philo);
 	ft_dinner(args);
 	ft_check_living(args);
 	ft_end_dinner(args);

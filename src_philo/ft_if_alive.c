@@ -14,3 +14,5 @@ int ft_if_alive(t_args *Data)
 		return (1);
 	}
 }
+
+// возвращает

@@ -7,6 +7,7 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
+
 typedef struct s_Data
 {
 	pthread_t 		philos;
@@ -16,6 +17,7 @@ typedef struct s_Data
 //	pthread_mutex_t lt_diner;
 	size_t			number_dining; // проверка на количество приемов пищи
 	size_t			time_last_diner; //запись последнего приема пищи
+	struct s_args	*args1;
 } t_Data;
 
 typedef struct s_args
@@ -51,14 +53,15 @@ int		ft_dinner(t_args *args);
 void	*ft_simulation(void *args);
 
 //void	ft_sleep(t_args *Data);
-int		ft_thinking(t_args *Data);
-int		ft_sleeping(t_args *Data);
-void	ft_print_data(char *Text, t_args *Data);
-int		ft_eating(t_args *Data);
-int 	ft_cycle(t_args *Data);
+int		ft_thinking(t_args *Data, t_Data *ph);
+int		ft_sleeping(t_args *Data, t_Data *ph);
+void	ft_print_data(char *Text, t_args *Data, t_Data *ph);
+int		ft_eating(t_args *Data, t_Data *ph);
+int		ft_cycle(t_args *Data, t_Data *ph);
 
 /* time functions */
 void	ft_current_time(size_t *current);
+void	ft_smart_sleep(size_t interval);
 
 /* check if alive */
 int 	ft_if_alive(t_args *Data);

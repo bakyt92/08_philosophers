@@ -9,11 +9,12 @@ int	ft_dinner(t_args *args)
 		return (1);
 	ft_current_time(&(args->start_time));
 	while (i < args->number_philo)
+
 	{
+//		printf("philo ID: %zu\n", args->philosophers[i].id_philosopher);
 		pthread_create(&(args->philosophers[i].philos), NULL, ft_simulation,
-					   args);
+					   (void *)(&args->philosophers[i]));
 		i++;
 	}
 	return (0);
 }
-
