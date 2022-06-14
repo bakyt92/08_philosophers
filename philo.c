@@ -16,9 +16,12 @@ int ft_end(t_args *args)
 		pthread_mutex_destroy(&(args->all_forks[i]));
 		i++;
 	}
-	free(args->philosophers);
-	free(args->all_forks);
-	free(args);
+	if (args->philosophers)
+		free(args->philosophers);
+	if (args->all_forks)
+		free(args->all_forks);
+	if (args)
+		free(args);
 	return (0);
 }
 
@@ -43,12 +46,17 @@ int	main(int argc, char **argv)
 	if (ft_check(argc, argv))
 	{
 		ft_print_error("Wrong arguments\n");
-		return (0);
+		return (1);
 	}
 	args = malloc(sizeof(t_args));
+	if (!args)
+		return (1);
 	ft_read_args(argv, args);
 	if (ft_init_data(args))
+	{
+		ft_end(args);
 		return (1);
+	}
 	ft_dinner(args);
 	ft_check_living(args);
 	ft_end_dinner(args);
