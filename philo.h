@@ -66,7 +66,8 @@ void	ft_smart_sleep(size_t interval);
 int 	ft_if_alive(t_args *Data);
 
 /* Monitoring */
-int		ft_check_living(t_args *args);
+void	*ft_check_living(void *args);
+//int		ft_check_living(t_args *args);
 int		ft_living_script(t_args *args);
 int 	ft_check_nbr_eating(t_args *args);
 

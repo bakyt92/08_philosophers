@@ -1,12 +1,15 @@
 #include "../philo.h"
 
-int	ft_check_living(t_args *args)
+void	*ft_check_living(void *args)
 {
-	while (args->status_live == 1)
+	t_args *Data;
+
+	Data = (t_args *)args;
+	while (Data->status_live == 1)
 	{
-		if (ft_living_script(args) == 1)
+		if (ft_living_script(Data) == 1)
 			break ;
-		if (ft_check_nbr_eating(args) == 1)
+		if (ft_check_nbr_eating(Data) == 1)
 			break ;
 	}
 	return (0);

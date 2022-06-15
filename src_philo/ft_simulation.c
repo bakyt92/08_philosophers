@@ -1,5 +1,7 @@
 #include "../philo.h"
-
+// переделать принт дата - проверка на живы ли философы, поставить 2 мьютекса
+// на printing + alive. Контролировать количество мютексов
+// некоторые мьютексы ускоряют процесс
 void	ft_print_data(char *Text, t_args *Data, t_Data *ph)
 {
 	size_t	timestamp_current;
@@ -12,18 +14,28 @@ void	ft_print_data(char *Text, t_args *Data, t_Data *ph)
 int	ft_sleeping(t_args *Data, t_Data *ph)
 {
 	pthread_mutex_lock(&(Data->printing));
+	if (ft_if_alive(Data))
+	{
+		pthread_mutex_unlock(&(Data->printing));
+		return (1);
+	}
 	ft_print_data("%zu %zu is sleeping\n", Data, ph);
 	pthread_mutex_unlock(&(Data->printing));
 	ft_smart_sleep(Data->time_sleep);
-	return (ft_if_alive(Data));
+	return (0);
 }
 
 int	ft_thinking(t_args *Data, t_Data *ph)
 {
 	pthread_mutex_lock(&(Data->printing));
+	if (ft_if_alive(Data))
+	{
+		pthread_mutex_unlock(&(Data->printing));
+		return (1);
+	}
 	ft_print_data("%zu %zu is thinking\n", Data, ph);
 	pthread_mutex_unlock(&(Data->printing));
-	return (ft_if_alive(Data));
+	return (0);
 }
 
 int	ft_eating(t_args *Data, t_Data *ph)
@@ -31,17 +43,32 @@ int	ft_eating(t_args *Data, t_Data *ph)
 	size_t	timestamp_current;
 
 	pthread_mutex_lock(&(Data->printing));
-	pthread_mutex_lock(&(Data->number_of_meals));
-	pthread_mutex_lock(&(Data->lt_eating));
+//	pthread_mutex_lock(&(Data->number_of_meals));
+//	pthread_mutex_lock(&(Data->lt_eating));
+	if (ft_if_alive(Data))
+	{
+//		pthread_mutex_unlock(&(Data->lt_eating));
+//		pthread_mutex_unlock(&(Data->number_of_meals));
+		pthread_mutex_unlock(&(Data->printing));
+		pthread_mutex_unlock(ph->left_fork);
+		pthread_mutex_unlock(ph->right_fork);
+		return (1);
+	}
 	ft_print_data("%zu %zu is eating\n", Data, ph);
+	pthread_mutex_unlock(&(Data->printing));
+	pthread_mutex_lock(&(Data->lt_eating));
 	ft_current_time(&timestamp_current);
 	ph->time_last_diner = timestamp_current;
-	ph->number_dining++;
 	pthread_mutex_unlock(&(Data->lt_eating));
-	pthread_mutex_unlock(&(Data->number_of_meals));
-	pthread_mutex_unlock(&(Data->printing));
 	ft_smart_sleep(Data->time_eat);
-	return (ft_if_alive(Data));
+	pthread_mutex_lock(&(Data->number_of_meals));
+	ph->number_dining++;
+	pthread_mutex_unlock(&(Data->number_of_meals));
+//	pthread_mutex_unlock(&(Data->lt_eating));
+//	pthread_mutex_unlock(&(Data->number_of_meals));
+//	pthread_mutex_unlock(&(Data->printing));
+//	ft_smart_sleep(Data->time_eat);
+	return (0);
 }
 
 void	*ft_simulation(void *cur_philosopher)
@@ -51,7 +78,8 @@ void	*ft_simulation(void *cur_philosopher)
 
 	philosopher_cur = (t_Data *)cur_philosopher;
 	allData = philosopher_cur->args1;
-//	printf("Test %zu\n", philosopher_cur->id_philosopher);
+	if (ft_if_alive(allData))
+		return (NULL);
 	if (philosopher_cur->id_philosopher % 2 == 0)
 		ft_thinking(allData, philosopher_cur);
 	else
@@ -61,9 +89,9 @@ void	*ft_simulation(void *cur_philosopher)
 	}
 	while (1)
 	{
-//		printf("check_1\n");
 		if (ft_cycle(allData, philosopher_cur))
-			break ;
+			return (NULL);
+//			break ;
 	}
 	return(NULL);
 }

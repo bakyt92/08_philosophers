@@ -5,10 +5,10 @@ int ft_end(t_args *args)
 	size_t i;
 
 	pthread_mutex_unlock(&(args->printing));
+	pthread_mutex_destroy(&(args->printing));
 	pthread_mutex_destroy(&(args->lt_eating));
 	pthread_mutex_destroy(&(args->alive));
 	pthread_mutex_destroy(&(args->number_of_meals));
-	pthread_mutex_destroy(&(args->printing));
 	i = 0;
 	while(i < args->number_philo)
 	{
@@ -25,23 +25,27 @@ int ft_end(t_args *args)
 	return (0);
 }
 
-int ft_end_dinner(t_args *args)
+//int ft_end_dinner(t_args *args)
+void ft_end_dinner(t_args *args)
 {
 	size_t i;
 
 	i = 0;
+	pthread_mutex_unlock(&(args->printing));
 	while (i < args->number_philo)
 	{
-		pthread_detach(args->philosophers[i].philos);
+		pthread_join(args->philosophers[i].philos, NULL);
 		i++;
 	}
+	printf("---HERE---\n");
 	ft_end(args);
-	return (0);
+//	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_args		*args;
+	pthread_t 	death_check;
 
 	if (ft_check(argc, argv))
 	{
@@ -58,7 +62,9 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	ft_dinner(args);
-	ft_check_living(args);
+	pthread_create(&death_check, NULL, ft_check_living, (void *)(args));
+	pthread_join(death_check, NULL);
+//	ft_check_living(args);
 	ft_end_dinner(args);
 	return (0);
 }
