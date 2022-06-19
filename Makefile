@@ -6,7 +6,7 @@ HEADER = philo.h
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror# -fsanitize=thread -g
+FLAGS = -Wall -Wextra -Werror #-fsanitize=thread -g
 
 SRC = philo.c \
 		./src_philo/ft_atoi.c \

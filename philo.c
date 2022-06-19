@@ -49,7 +49,6 @@ void	ft_end_dinner(t_args *args)
 		pthread_join(args->philosophers[i].philos, NULL);
 		i++;
 	}
-	printf("---HERE---\n");
 	ft_end(args);
 //	return (0);
 }
@@ -76,7 +75,7 @@ int	main(int argc, char **argv)
 	ft_dinner(args);
 	pthread_create(&death_check, NULL, ft_check_living, (void *)(args));
 	pthread_join(death_check, NULL);
-//	ft_check_living(args);
+	ft_check_living(args);
 	ft_end_dinner(args);
 	return (0);
 }

@@ -30,7 +30,7 @@ void	*ft_check_living(void *args)
 int	ft_living_script(t_args *args)
 {
 	size_t	timestamp_current;
-	size_t 	i;
+	size_t	i;
 
 	i = 0;
 	ft_current_time(&timestamp_current);
@@ -41,11 +41,9 @@ int	ft_living_script(t_args *args)
 			args->time_die)
 		{
 			pthread_mutex_unlock(&(args->lt_eating));
+			ft_print_data("%zu %zu died\n", &(args->philosophers[i]), args);
 			pthread_mutex_lock(&(args->alive));
-			pthread_mutex_lock(&(args->printing));
-			ft_print_data("%zu %zu died\n", args, &(args->philosophers[i]));
 			args->status_live = 0;
-//			pthread_mutex_unlock(&(args->printing));
 			pthread_mutex_unlock(&(args->alive));
 			return (1);
 		}

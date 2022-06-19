@@ -103,3 +103,10 @@ https://www.youtube.com/watch?v=Bhv2ChKDeio&t=362s
 Они равноправные, без подчиненности. 
 Проект philosophers - направлен на то, как пользоваться потоками.
 
+three blue one brown - канал про геометрию
+https://www.youtube.com/c/3blue1brown/playlists?view=1&sort=dd&shelf_id=0
+Матанализ http://math.nsc.ru/~matanalyse/potapov/pt06.pdf
+**********
+Порядок мьютексов
+
+Ели философ 1 - то подумал, взял левую вилку, умер 

@@ -9,37 +9,37 @@
 /*   Updated: 2022/06/19 17:07:38 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include "../philo.h"
 
 static int ft_take_left_fork(t_args *Data, t_Data *ph)
 {
 	pthread_mutex_lock(ph->left_fork);
-	pthread_mutex_lock(&(Data->printing));
+//	pthread_mutex_lock(&(Data->printing));
 	if (ft_if_alive(Data))
 	{
-		pthread_mutex_unlock(&(Data->printing));
+//		pthread_mutex_unlock(&(Data->printing));
 		pthread_mutex_unlock(ph->left_fork);
 		return (1);
 	}
-	ft_print_data("%zu %zu has taken LEFT a fork\n", Data, ph);
-	pthread_mutex_unlock(&(Data->printing));
+	ft_print_data("%zu %zu has taken a fork\n", Data, ph);
+//	pthread_mutex_unlock(&(Data->printing));
 	return (0);
 }
 
 static int ft_take_right_fork(t_args *Data, t_Data *ph)
 {
 	pthread_mutex_lock(ph->right_fork);
-	pthread_mutex_lock(&(Data->printing));
+//	pthread_mutex_lock(&(Data->printing));
 	if (ft_if_alive(Data))
 	{
-		pthread_mutex_unlock(&(Data->printing));
+//		pthread_mutex_unlock(&(Data->printing));
 		pthread_mutex_unlock(ph->left_fork);
 		pthread_mutex_unlock(ph->right_fork);
 		return (1);
 	}
-	ft_print_data("%zu %zu has taken RIGHT a fork\n", Data, ph);
-	pthread_mutex_unlock(&(Data->printing));
+	ft_print_data("%zu %zu has taken a fork\n", Data, ph);
+//	pthread_mutex_unlock(&(Data->printing));
 	return (0);
 }
 
@@ -75,3 +75,4 @@ int ft_cycle(t_args *Data, t_Data *ph)
 		return (1);
 	return (0);
 }
+ */

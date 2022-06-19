@@ -59,15 +59,20 @@ int		ft_create_philosophers(t_args *args);
 int		ft_create_mutex(t_args *args);
 
 /* simulation */
+
 int		ft_dinner(t_args *args);
 void	*ft_simulation(void *args);
 
+/* PRINT DATA */
+int	ft_print_data(char *text, t_Data *philosopher_cur, t_args *alldata);
+/*
 //void	ft_sleep(t_args *Data);
 int		ft_thinking(t_args *Data, t_Data *ph);
 int		ft_sleeping(t_args *Data, t_Data *ph);
 void	ft_print_data(char *Text, t_args *Data, t_Data *ph);
 int		ft_eating(t_args *Data, t_Data *ph);
 int		ft_cycle(t_args *Data, t_Data *ph);
+ */
 
 /* time functions */
 void	ft_current_time(size_t *current);
