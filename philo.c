@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ufitzhug <ufitzhug@student.21-school.ru    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/19 16:55:40 by ufitzhug          #+#    #+#             */
+/*   Updated: 2022/06/19 17:04:17 by ufitzhug         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-int ft_end(t_args *args)
+int	ft_end(t_args *args)
 {
-	size_t i;
+	size_t	i;
 
 	pthread_mutex_unlock(&(args->printing));
 	pthread_mutex_destroy(&(args->printing));
@@ -10,7 +22,7 @@ int ft_end(t_args *args)
 	pthread_mutex_destroy(&(args->alive));
 	pthread_mutex_destroy(&(args->number_of_meals));
 	i = 0;
-	while(i < args->number_philo)
+	while (i < args->number_philo)
 	{
 		pthread_mutex_unlock(&(args->all_forks[i]));
 		pthread_mutex_destroy(&(args->all_forks[i]));
@@ -26,9 +38,9 @@ int ft_end(t_args *args)
 }
 
 //int ft_end_dinner(t_args *args)
-void ft_end_dinner(t_args *args)
+void	ft_end_dinner(t_args *args)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	pthread_mutex_unlock(&(args->printing));
@@ -45,7 +57,7 @@ void ft_end_dinner(t_args *args)
 int	main(int argc, char **argv)
 {
 	t_args		*args;
-	pthread_t 	death_check;
+	pthread_t	death_check;
 
 	if (ft_check(argc, argv))
 	{

@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_simulation.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ufitzhug <ufitzhug@student.21-school.ru    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/19 17:07:01 by ufitzhug          #+#    #+#             */
+/*   Updated: 2022/06/19 17:11:12 by ufitzhug         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../philo.h"
+
 // переделать принт дата - проверка на живы ли философы, поставить 2 мьютекса
 // на printing + alive. Контролировать количество мютексов
 // некоторые мьютексы ускоряют процесс
@@ -73,26 +86,25 @@ int	ft_eating(t_args *Data, t_Data *ph)
 
 void	*ft_simulation(void *cur_philosopher)
 {
-	t_Data *philosopher_cur;
-	t_args *allData;
+	t_Data	*philosopher_cur;
+	t_args	*alldata;
 
 	philosopher_cur = (t_Data *)cur_philosopher;
-	allData = philosopher_cur->args1;
-	if (ft_if_alive(allData))
+	alldata = philosopher_cur->args1;
+	if (ft_if_alive(alldata))
 		return (NULL);
 	if (philosopher_cur->id_philosopher % 2 == 0)
-		ft_thinking(allData, philosopher_cur);
+		ft_thinking(alldata, philosopher_cur);
 	else
 	{
-		ft_thinking(allData,philosopher_cur);
-		ft_smart_sleep(allData->time_eat);
+		ft_thinking(alldata, philosopher_cur);
+		ft_smart_sleep(alldata->time_eat);
 	}
 	while (1)
 	{
-		if (ft_cycle(allData, philosopher_cur))
+		if (ft_cycle(alldata, philosopher_cur))
 			return (NULL);
 //			break ;
 	}
-	return(NULL);
+	return (NULL);
 }
-
