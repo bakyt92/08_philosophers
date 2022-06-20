@@ -19,7 +19,7 @@ SRC = philo.c \
 		./src_philo/ft_process_threads.c \
 		./src_philo/ft_read_args.c \
 		./src_philo/ft_simulation.c \
-		./src_philo/ft_cycle.c
+		#./src_philo/ft_cycle.c
 
 OBJ = $(SRC:%.c= %.o)
 
