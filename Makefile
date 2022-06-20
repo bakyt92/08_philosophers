@@ -4,7 +4,7 @@ BONUS = philo_bonus
 
 HEADER = philo.h
 
-CC = gcc
+CC = cc
 
 FLAGS = -Wall -Wextra -Werror #-fsanitize=thread -g
 
