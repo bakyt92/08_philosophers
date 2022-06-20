@@ -26,19 +26,19 @@ typedef struct s_Data
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	size_t			number_dining;
-	size_t			time_last_diner;
+	long long		time_last_diner;
 	struct s_args	*args1;
 }	t_Data;
 
 typedef struct s_args
 {
 	size_t			number_philo;
-	size_t			time_die;
-	size_t			time_eat;
-	size_t			time_sleep;
+	long long		time_die;
+	long long		time_eat;
+	long long		time_sleep;
 	size_t			number_each_eat;
 	size_t			status_live;
-	size_t			start_time;
+	long long		start_time;
 	pthread_mutex_t	*all_forks;
 	pthread_mutex_t	printing;
 	pthread_mutex_t	number_of_meals;
@@ -75,8 +75,8 @@ int		ft_cycle(t_args *Data, t_Data *ph);
  */
 
 /* time functions */
-void	ft_current_time(size_t *current);
-void	ft_smart_sleep(size_t interval);
+void	ft_current_time(long long *current);
+void	ft_smart_sleep(long long interval);
 
 /* check if alive */
 int		ft_if_alive(t_args *Data);

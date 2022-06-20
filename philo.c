@@ -75,7 +75,7 @@ int	main(int argc, char **argv)
 	ft_dinner(args);
 	pthread_create(&death_check, NULL, ft_check_living, (void *)(args));
 	pthread_join(death_check, NULL);
-	ft_check_living(args);
+//	ft_check_living(args);
 	ft_end_dinner(args);
 	return (0);
 }

@@ -29,19 +29,22 @@ void	*ft_check_living(void *args)
 
 int	ft_living_script(t_args *args)
 {
-	size_t	timestamp_current;
-	size_t	i;
+	long long	timestamp_current;
+	size_t		i;
 
 	i = 0;
 	ft_current_time(&timestamp_current);
 	while (i < args->number_philo)
 	{
 		pthread_mutex_lock(&(args->lt_eating));
-		if (timestamp_current - args->philosophers[i].time_last_diner >
+		if (timestamp_current - args->philosophers[i].time_last_diner >=
 			args->time_die)
 		{
 			pthread_mutex_unlock(&(args->lt_eating));
-			ft_print_data("%zu %zu died\n", &(args->philosophers[i]), args);
+			timestamp_current = timestamp_current - args->start_time;
+			pthread_mutex_lock(&(args->printing));
+			printf("%lld %zu died\n", timestamp_current, args->philosophers->id_philosopher);
+//			ft_print_data("%zu %zu died\n", &(args->philosophers[i]), args);
 			pthread_mutex_lock(&(args->alive));
 			args->status_live = 0;
 			pthread_mutex_unlock(&(args->alive));

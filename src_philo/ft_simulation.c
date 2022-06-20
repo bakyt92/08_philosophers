@@ -115,7 +115,7 @@ void	*ft_simulation(void *cur_philosopher)
 
 int	ft_print_data(char *text, t_Data *philosopher_cur, t_args *alldata)
 {
-	size_t	time_now;
+	long long	time_now;
 
 	if (ft_if_alive(alldata))
 	{
@@ -134,7 +134,7 @@ int	ft_print_data(char *text, t_Data *philosopher_cur, t_args *alldata)
 
 static int	ft_thinking(t_Data *philosopher_cur, t_args *alldata)
 {
-	if (ft_print_data("%zu %zu is thinking\n", philosopher_cur, alldata))
+	if (ft_print_data("%lld %zu is thinking\n", philosopher_cur, alldata))
 		return (1);
 	else
 		return (0);
@@ -142,7 +142,7 @@ static int	ft_thinking(t_Data *philosopher_cur, t_args *alldata)
 
 static int	ft_sleeping(t_Data *philosopher_cur, t_args *alldata)
 {
-	if (ft_print_data("%zu %zu is sleeping\n", philosopher_cur, alldata))
+	if (ft_print_data("%lld %zu is sleeping\n", philosopher_cur, alldata))
 		return (1);
 	else
 	{
@@ -170,19 +170,19 @@ void	*ft_simulation(void *cur_philosopher)
 	while(1)
 	{
 		pthread_mutex_lock(philosopher_cur->left_fork);
-		if (ft_print_data("%zu %zu has taken a fork\n", philosopher_cur, alldata))
+		if (ft_print_data("%lld %zu has taken a fork\n", philosopher_cur, alldata))
 		{
 			pthread_mutex_unlock(philosopher_cur->left_fork);
 			return (NULL);
 		}
 		pthread_mutex_lock(philosopher_cur->right_fork);
-		if (ft_print_data("%zu %zu has taken a fork\n", philosopher_cur, alldata))
+		if (ft_print_data("%lld %zu has taken a fork\n", philosopher_cur, alldata))
 		{
 			pthread_mutex_unlock(philosopher_cur->left_fork);
 			pthread_mutex_unlock(philosopher_cur->right_fork);
 			return (NULL);
 		}
-		if (ft_print_data("%zu %zu is eating\n", philosopher_cur, alldata))
+		if (ft_print_data("%lld %zu is eating\n", philosopher_cur, alldata))
 		{
 			pthread_mutex_unlock(philosopher_cur->left_fork);
 			pthread_mutex_unlock(philosopher_cur->right_fork);
