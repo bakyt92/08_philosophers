@@ -6,15 +6,15 @@
 /*   By: ufitzhug <ufitzhug@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 17:07:51 by ufitzhug          #+#    #+#             */
-/*   Updated: 2022/06/19 17:07:52 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2022/06/21 00:18:57 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-static int ft_isdigit(char *str)
+static int	ft_isdigit(char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
@@ -29,14 +29,14 @@ static int ft_isdigit(char *str)
 	return (0);
 }
 
-int ft_check(int argc, char **argv)
+int	ft_check(int argc, char **argv)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	if (argc != 5 && argc != 6)
 		return (1);
-	while(argv[i])
+	while (argv[i])
 	{
 		if (ft_atoi(argv[i]) < 0)
 			return (1);

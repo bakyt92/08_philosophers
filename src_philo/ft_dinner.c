@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 17:07:31 by ufitzhug          #+#    #+#             */
-/*   Updated: 2022/06/19 17:07:32 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2022/06/21 00:26:16 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_dinner(t_args *args)
 	while (i < args->number_philo)
 	{
 		pthread_create(&(args->philosophers[i].philos), NULL, ft_simulation,
-					   (void *)(&args->philosophers[i]));
+			(void *)(&args->philosophers[i]));
 		i++;
 	}
 	return (0);
