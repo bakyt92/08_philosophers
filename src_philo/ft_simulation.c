@@ -67,14 +67,14 @@ void	*ft_simulation(void *cur_philosopher)
 	while (1)
 	{
 		pthread_mutex_lock(philosopher_cur->left_fork);
-		if (ft_print_data("%lld %zu has taken a fork\n",
+		if (ft_print_data("%lld %zu has taken a Lfork\n",
 				philosopher_cur, alldata))
 		{
 			pthread_mutex_unlock(philosopher_cur->left_fork);
 			return (NULL);
 		}
 		pthread_mutex_lock(philosopher_cur->right_fork);
-		if (ft_print_data("%lld %zu has taken a fork\n",
+		if (ft_print_data("%lld %zu has taken a Rfork\n",
 				philosopher_cur, alldata))
 		{
 			pthread_mutex_unlock(philosopher_cur->left_fork);
