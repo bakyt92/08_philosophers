@@ -30,13 +30,15 @@ void	*ft_check_living(void *args)
 int	ft_living_script(t_args *args)
 {
 	long long	timestamp_current;
+//	long long	diff;
 	size_t		i;
 
 	i = 0;
-	ft_current_time(&timestamp_current);
+
 	while (i < args->number_philo)
 	{
 		pthread_mutex_lock(&(args->lt_eating));
+		ft_current_time(&timestamp_current);
 		if (timestamp_current - args->philosophers[i].time_last_diner
 			>= args->time_die)
 		{
@@ -44,7 +46,7 @@ int	ft_living_script(t_args *args)
 			timestamp_current = timestamp_current - args->start_time;
 			pthread_mutex_lock(&(args->printing));
 			printf("%lld %zu died\n", timestamp_current,
-				args->philosophers->id_philosopher);
+				args->philosophers[i].id_philosopher);
 			pthread_mutex_lock(&(args->alive));
 			args->status_live = 0;
 			pthread_mutex_unlock(&(args->alive));

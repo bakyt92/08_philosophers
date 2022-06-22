@@ -55,6 +55,7 @@ void	*ft_simulation(void *cur_philosopher)
 
 	philosopher_cur = (t_Data *)cur_philosopher;
 	alldata = philosopher_cur->args1;
+//	printf("#######START TIME %lld #######\n", philosopher_cur->args1->start_time);
 	if (ft_if_alive(alldata))
 		return (NULL);
 	if (philosopher_cur->id_philosopher % 2 == 0)
@@ -66,15 +67,18 @@ void	*ft_simulation(void *cur_philosopher)
 	}
 	while (1)
 	{
+//		printf("%zu Left FORK %p\n", philosopher_cur->id_philosopher, philosopher_cur->left_fork);
+//		printf("%zu Right FORK %p\n", philosopher_cur->id_philosopher, philosopher_cur->right_fork);
 		pthread_mutex_lock(philosopher_cur->left_fork);
-		if (ft_print_data("%lld %zu has taken a Lfork\n",
+		if (ft_print_data("%lld %zu has taken a fork\n",
 				philosopher_cur, alldata))
 		{
 			pthread_mutex_unlock(philosopher_cur->left_fork);
 			return (NULL);
 		}
+//		printf("Left Fork %p\n", philosopher_cur->left_fork);
 		pthread_mutex_lock(philosopher_cur->right_fork);
-		if (ft_print_data("%lld %zu has taken a Rfork\n",
+		if (ft_print_data("%lld %zu has taken a fork\n",
 				philosopher_cur, alldata))
 		{
 			pthread_mutex_unlock(philosopher_cur->left_fork);
@@ -87,6 +91,10 @@ void	*ft_simulation(void *cur_philosopher)
 			pthread_mutex_unlock(philosopher_cur->right_fork);
 			return (NULL);
 		}
+		pthread_mutex_lock(&(alldata->lt_eating));
+		ft_current_time(&(philosopher_cur->time_last_diner));
+		pthread_mutex_unlock(&(alldata->lt_eating));
+		ft_smart_sleep(alldata->time_eat);
 		pthread_mutex_unlock(philosopher_cur->left_fork);
 		pthread_mutex_unlock(philosopher_cur->right_fork);
 		pthread_mutex_lock(&(alldata->lt_eating));
@@ -95,7 +103,6 @@ void	*ft_simulation(void *cur_philosopher)
 		pthread_mutex_lock(&(alldata->number_of_meals));
 		philosopher_cur->number_dining++;
 		pthread_mutex_unlock(&(alldata->number_of_meals));
-		ft_smart_sleep(alldata->time_eat);
 		if (ft_sleeping(philosopher_cur, alldata))
 			return (NULL);
 		if (ft_thinking(philosopher_cur, alldata))
