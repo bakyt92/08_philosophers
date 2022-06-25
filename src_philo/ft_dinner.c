@@ -16,14 +16,17 @@ int	ft_dinner(t_args *args)
 {
 	size_t	i;
 
-	i = 0;
+	i = 1;
 	if (args->number_philo == 1)
 		return (1);
 	ft_current_time(&(args->start_time));
-	while (i < args->number_philo)
+	while (i < args->number_philo + 1)
 	{
 		pthread_create(&(args->philosophers[i].philos), NULL, ft_simulation,
 			(void *)(&args->philosophers[i]));
+		///
+//		pthread_detach(args->philosophers[i].philos);
+		///
 		i++;
 	}
 	return (0);

@@ -37,8 +37,9 @@ typedef struct s_args
 	long long		time_eat;
 	long long		time_sleep;
 	size_t			number_each_eat;
-	size_t			status_live;
+	int				status_live;
 	long long		start_time;
+	long long		death_time;
 	pthread_mutex_t	*all_forks;
 	pthread_mutex_t	printing;
 	pthread_mutex_t	number_of_meals;

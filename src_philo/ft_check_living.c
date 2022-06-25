@@ -17,7 +17,7 @@ void	*ft_check_living(void *args)
 	t_args	*data;
 
 	data = (t_args *)args;
-	while (data->status_live == 1)
+	while (data->status_live == -1)
 	{
 		if (ft_living_script(data) == 1)
 			break ;
@@ -33,23 +33,25 @@ int	ft_living_script(t_args *args)
 //	long long	diff;
 	size_t		i;
 
-	i = 0;
-
-	while (i < args->number_philo)
+	i = 1;
+	while (i < args->number_philo + 1)
 	{
 		pthread_mutex_lock(&(args->lt_eating));
 		ft_current_time(&timestamp_current);
 		if (timestamp_current - args->philosophers[i].time_last_diner
 			>= args->time_die)
 		{
+			pthread_mutex_lock(&(args->alive));
+			args->status_live = i;
+			pthread_mutex_unlock(&(args->alive));
 			pthread_mutex_unlock(&(args->lt_eating));
+			args->death_time = timestamp_current;
 			timestamp_current = timestamp_current - args->start_time;
 			pthread_mutex_lock(&(args->printing));
-			printf("%lld %zu died\n", timestamp_current,
+//			ft_current_time(&timestamp_current);
+			printf("%lld %zu died_first\n", timestamp_current,
 				args->philosophers[i].id_philosopher);
-			pthread_mutex_lock(&(args->alive));
-			args->status_live = 0;
-			pthread_mutex_unlock(&(args->alive));
+			pthread_mutex_unlock(&(args->printing));
 			return (1);
 		}
 		pthread_mutex_unlock(&(args->lt_eating));
@@ -63,11 +65,11 @@ int	ft_check_nbr_eating(t_args *args)
 	size_t	i;
 	size_t	counter;
 
-	i = 0;
+	i = 1;
 	counter = 0;
 	if (args->number_each_eat > 0)
 	{
-		while (i < args->number_philo)
+		while (i < args->number_philo + 1)
 		{
 			if (args->philosophers[i].number_dining >= args->number_each_eat)
 				counter++;

@@ -17,7 +17,10 @@ int	ft_print_data(char *text, t_Data *philosopher_cur, t_args *alldata)
 	long long	time_now;
 
 	if (ft_if_alive(alldata))
+	{
+//		printf("Philo %zu exited \n", philosopher_cur->id_philosopher);
 		return (1);
+	}
 	else
 	{
 		pthread_mutex_lock(&(alldata->printing));
@@ -69,9 +72,16 @@ void	*ft_simulation(void *cur_philosopher)
 	{
 //		printf("%zu Left FORK %p\n", philosopher_cur->id_philosopher, philosopher_cur->left_fork);
 //		printf("%zu Right FORK %p\n", philosopher_cur->id_philosopher, philosopher_cur->right_fork);
+		if (ft_if_alive(alldata))
+			return (NULL);
 		pthread_mutex_lock(philosopher_cur->left_fork);
 		if (ft_print_data("%lld %zu has taken a fork\n",
 				philosopher_cur, alldata))
+		{
+			pthread_mutex_unlock(philosopher_cur->left_fork);
+			return (NULL);
+		}
+		if (ft_if_alive(alldata))
 		{
 			pthread_mutex_unlock(philosopher_cur->left_fork);
 			return (NULL);
@@ -97,9 +107,9 @@ void	*ft_simulation(void *cur_philosopher)
 		ft_smart_sleep(alldata->time_eat);
 		pthread_mutex_unlock(philosopher_cur->left_fork);
 		pthread_mutex_unlock(philosopher_cur->right_fork);
-		pthread_mutex_lock(&(alldata->lt_eating));
-		ft_current_time(&(philosopher_cur->time_last_diner));
-		pthread_mutex_unlock(&(alldata->lt_eating));
+//		pthread_mutex_lock(&(alldata->lt_eating));
+//		ft_current_time(&(philosopher_cur->time_last_diner));
+//		pthread_mutex_unlock(&(alldata->lt_eating));
 		pthread_mutex_lock(&(alldata->number_of_meals));
 		philosopher_cur->number_dining++;
 		pthread_mutex_unlock(&(alldata->number_of_meals));
@@ -107,5 +117,6 @@ void	*ft_simulation(void *cur_philosopher)
 			return (NULL);
 		if (ft_thinking(philosopher_cur, alldata))
 			return (NULL);
+//		printf("Philo stay alive %zu \n", philosopher_cur->id_philosopher);
 	}
 }
