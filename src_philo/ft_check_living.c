@@ -74,8 +74,10 @@ int	ft_check_nbr_eating(t_args *args)
 	{
 		while (i < args->number_philo + 1)
 		{
+			pthread_mutex_lock(&(args->number_of_meals));
 			if (args->philosophers[i].number_dining >= args->number_each_eat)
 				counter++;
+			pthread_mutex_unlock(&(args->number_of_meals));
 			i++;
 		}
 		if (counter == args->number_philo)
