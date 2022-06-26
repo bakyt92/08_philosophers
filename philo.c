@@ -12,22 +12,36 @@
 
 #include "philo.h"
 
-int	ft_end(t_args *args)
+static int	ft_destroy_mutex(t_args *args)
 {
 	size_t	i;
 
 	pthread_mutex_unlock(&(args->printing));
-	pthread_mutex_destroy(&(args->printing));
-	pthread_mutex_destroy(&(args->lt_eating));
-	pthread_mutex_destroy(&(args->alive));
-	pthread_mutex_destroy(&(args->number_of_meals));
+	if (pthread_mutex_destroy(&(args->printing)))
+		ft_print_error("Error: Mutex_destroy printing\n");
+	if (pthread_mutex_destroy(&(args->lt_eating)))
+		ft_print_error("Error: Mutex_destroy lt_eating\n");
+	if (pthread_mutex_destroy(&(args->alive)))
+		ft_print_error("Error: Mutex_destroy alive\n");
+	if (args->number_each_eat > 0)
+	{
+		if (pthread_mutex_destroy(&(args->number_of_meals)))
+			ft_print_error("Error: Mutex_destroy number of meals\n");
+	}
 	i = 1;
 	while (i < args->number_philo + 1)
 	{
 		pthread_mutex_unlock(&(args->all_forks[i]));
-		pthread_mutex_destroy(&(args->all_forks[i]));
+		if (pthread_mutex_destroy(&(args->all_forks[i])))
+			ft_print_error("Error: Mutex_destroy all forks \n");
 		i++;
 	}
+	return (0);
+}
+
+int	ft_end(t_args *args)
+{
+	ft_destroy_mutex(args);
 	if (args->philosophers)
 		free(args->philosophers);
 	if (args->all_forks)
