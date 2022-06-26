@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:55:54 by ufitzhug          #+#    #+#             */
-/*   Updated: 2022/06/19 17:06:17 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:40:04 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,7 @@ void	*ft_simulation(void *args);
 int		ft_thinking(t_Data *philosopher_cur, t_args *alldata);
 
 /* PRINT DATA */
-int	ft_print_data(char *text, t_Data *philosopher_cur, t_args *alldata);
-/*
-//void	ft_sleep(t_args *Data);
-int		ft_thinking(t_args *Data, t_Data *ph);
-int		ft_sleeping(t_args *Data, t_Data *ph);
-void	ft_print_data(char *Text, t_args *Data, t_Data *ph);
-int		ft_eating(t_args *Data, t_Data *ph);
-int		ft_cycle(t_args *Data, t_Data *ph);
- */
+int		ft_print_data(char *text, t_Data *philosopher_cur, t_args *alldata);
 
 /* time functions */
 void	ft_current_time(long long *current);
@@ -85,7 +77,6 @@ int		ft_if_alive(t_args *Data);
 
 /* Monitoring */
 void	*ft_check_living(void *args);
-//int		ft_check_living(t_args *args);
 int		ft_living_script(t_args *args);
 int		ft_check_nbr_eating(t_args *args);
 

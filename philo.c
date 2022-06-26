@@ -6,12 +6,12 @@
 /*   By: ufitzhug <ufitzhug@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:55:40 by ufitzhug          #+#    #+#             */
-/*   Updated: 2022/06/19 17:04:17 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:43:22 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-// перед каждлым мьютексом написать вывод ошибки, если она есть
+
 int	ft_end(t_args *args)
 {
 	size_t	i;
@@ -37,11 +37,9 @@ int	ft_end(t_args *args)
 	return (0);
 }
 
-//int ft_end_dinner(t_args *args)
 void	ft_end_dinner(t_args *args)
 {
 	size_t	i;
-//	long long	current_time;
 
 	i = 1;
 	while (i < args->number_philo + 1)
@@ -49,11 +47,8 @@ void	ft_end_dinner(t_args *args)
 		pthread_join(args->philosophers[i].philos, NULL);
 		i++;
 	}
-//	ft_current_time(&current_time);
-//	printf("%lld %d died_struct\n", current_time - args->start_time, args->status_live);
-//	pthread_mutex_unlock(&(args->printing));
 	ft_end(args);
-//	return (0);
+	return ;
 }
 
 int	main(int argc, char **argv)
@@ -78,9 +73,6 @@ int	main(int argc, char **argv)
 	ft_dinner(args);
 	pthread_create(&death_check, NULL, ft_check_living, (void *)(args));
 	pthread_join(death_check, NULL);
-//	ft_check_living(args);
 	ft_end_dinner(args);
 	return (0);
 }
-
-/// не забыть обработать вариант с 1 философом и mutex destroy

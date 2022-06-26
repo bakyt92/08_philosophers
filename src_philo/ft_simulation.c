@@ -6,11 +6,31 @@
 /*   By: ufitzhug <ufitzhug@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 17:07:01 by ufitzhug          #+#    #+#             */
-/*   Updated: 2022/06/26 04:56:05 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:52:52 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+static int	ft_eating(t_args *alldata, t_Data *philosopher_cur)
+{
+	if (ft_print_data("%lld %zu is eating\n", philosopher_cur, alldata))
+	{
+		pthread_mutex_unlock(philosopher_cur->left_fork);
+		pthread_mutex_unlock(philosopher_cur->right_fork);
+		return (1);
+	}
+	pthread_mutex_lock(&(alldata->lt_eating));
+	ft_current_time(&(philosopher_cur->time_last_diner));
+	pthread_mutex_unlock(&(alldata->lt_eating));
+	ft_smart_sleep(alldata->time_eat);
+	pthread_mutex_unlock(philosopher_cur->left_fork);
+	pthread_mutex_unlock(philosopher_cur->right_fork);
+	pthread_mutex_lock(&(alldata->number_of_meals));
+	philosopher_cur->number_dining++;
+	pthread_mutex_unlock(&(alldata->number_of_meals));
+	return (0);
+}
 
 static int	ft_begin(t_args	*alldata, t_Data *philosopher_cur)
 {
@@ -65,8 +85,6 @@ void	*ft_simulation(void *cur_philosopher)
 
 	philosopher_cur = (t_Data *)cur_philosopher;
 	alldata = philosopher_cur->args1;
-	if (ft_if_alive(alldata))
-		return (NULL);
 	if (philosopher_cur->id_philosopher % 2 == 0)
 		ft_thinking(philosopher_cur, alldata);
 	else
@@ -76,23 +94,10 @@ void	*ft_simulation(void *cur_philosopher)
 	}
 	while (1)
 	{
-		if (ft_begin(philosopher_cur, alldata))
-			return (0);
-		if (ft_print_data("%lld %zu is eating\n", philosopher_cur, alldata))
-		{
-			pthread_mutex_unlock(philosopher_cur->left_fork);
-			pthread_mutex_unlock(philosopher_cur->right_fork);
-			return (1);
-		}
-		pthread_mutex_lock(&(alldata->lt_eating));
-		ft_current_time(&(philosopher_cur->time_last_diner));
-		pthread_mutex_unlock(&(alldata->lt_eating));
-		ft_smart_sleep(alldata->time_eat);
-		pthread_mutex_unlock(philosopher_cur->left_fork);
-		pthread_mutex_unlock(philosopher_cur->right_fork);
-		pthread_mutex_lock(&(alldata->number_of_meals));
-		philosopher_cur->number_dining++;
-		pthread_mutex_unlock(&(alldata->number_of_meals));
+		if (ft_begin(alldata, philosopher_cur))
+			return (NULL);
+		if (ft_eating(alldata, philosopher_cur))
+			return (NULL);
 		if (ft_sleeping(philosopher_cur, alldata))
 			return (NULL);
 		if (ft_thinking(philosopher_cur, alldata))
