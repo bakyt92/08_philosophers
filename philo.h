@@ -63,6 +63,7 @@ int		ft_create_mutex(t_args *args);
 
 int		ft_dinner(t_args *args);
 void	*ft_simulation(void *args);
+int		ft_thinking(t_Data *philosopher_cur, t_args *alldata);
 
 /* PRINT DATA */
 int	ft_print_data(char *text, t_Data *philosopher_cur, t_args *alldata);

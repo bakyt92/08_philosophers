@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 17:07:14 by ufitzhug          #+#    #+#             */
-/*   Updated: 2022/06/21 00:26:50 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2022/06/26 04:41:21 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_create_mutex(t_args *args)
 	return (0);
 }
 
-int ft_create_forks(t_args *args)
+int	ft_create_forks(t_args *args)
 {
 	size_t	i;
 
@@ -69,7 +69,6 @@ int	ft_create_philosophers(t_args *args)
 	ft_current_time(&timestamp_start);
 	while (i < args->number_philo + 1)
 	{
-		// ft_current_time(&timestamp_start);
 		args->philosophers[i].id_philosopher = i;
 		args->philosophers[i].right_fork = &args->all_forks[i];
 		if (i == args->number_philo)

@@ -6,11 +6,25 @@
 /*   By: ufitzhug <ufitzhug@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 17:07:56 by ufitzhug          #+#    #+#             */
-/*   Updated: 2022/06/21 00:21:43 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2022/06/26 04:40:04 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+static void	script1(t_args *args, long long timestamp_current, size_t i)
+{
+	pthread_mutex_unlock(&(args->lt_eating));
+	pthread_mutex_lock(&(args->alive));
+	args->status_live = i;
+	pthread_mutex_unlock(&(args->alive));
+	args->death_time = timestamp_current;
+	timestamp_current = timestamp_current - args->start_time;
+	pthread_mutex_lock(&(args->printing));
+	printf("%lld %zu died\n", timestamp_current,
+		args->philosophers[i].id_philosopher);
+	pthread_mutex_unlock(&(args->printing));
+}
 
 void	*ft_check_living(void *args)
 {
@@ -30,7 +44,6 @@ void	*ft_check_living(void *args)
 int	ft_living_script(t_args *args)
 {
 	long long	timestamp_current;
-//	long long	diff;
 	size_t		i;
 
 	i = 1;
@@ -41,17 +54,7 @@ int	ft_living_script(t_args *args)
 		if (timestamp_current - args->philosophers[i].time_last_diner
 			>= args->time_die)
 		{
-			pthread_mutex_lock(&(args->alive));
-			args->status_live = i;
-			pthread_mutex_unlock(&(args->alive));
-			pthread_mutex_unlock(&(args->lt_eating));
-			args->death_time = timestamp_current;
-			timestamp_current = timestamp_current - args->start_time;
-			pthread_mutex_lock(&(args->printing));
-//			ft_current_time(&timestamp_current);
-			printf("%lld %zu died_first\n", timestamp_current,
-				args->philosophers[i].id_philosopher);
-			pthread_mutex_unlock(&(args->printing));
+			script1(args, timestamp_current, i);
 			return (1);
 		}
 		pthread_mutex_unlock(&(args->lt_eating));

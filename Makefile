@@ -1,6 +1,6 @@
 NAME = philo
 
-BONUS = philo_bonus
+#BONUS = philo_bonus
 
 HEADER = philo.h
 
@@ -22,7 +22,7 @@ SRC = philo.c \
 
 OBJ = $(SRC:%.c= %.o)
 
-.PHONY : all bonus clean fclean re
+.PHONY : all clean fclean re #bonus
 
 all : $(NAME)
 
@@ -32,10 +32,10 @@ $(NAME) : $(OBJ) $(HEADER)
 %.o	: %.c $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
 
-bonus : $(BONUS)
+#bonus : $(BONUS)
 
-$(BONUS) : $(OBJ_BONUS) $(HEADER)
-	$(CC) $(FLAGS) -O2 $(OBJ_BONUS) -o $(BONUS)
+#$(BONUS) : $(OBJ_BONUS) $(HEADER)
+#	$(CC) $(FLAGS) -O2 $(OBJ_BONUS) -o $(BONUS)
 
 clean	:
 	@rm -f $(OBJ)
